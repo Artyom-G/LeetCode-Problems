@@ -1,4 +1,22 @@
 #Approach: Sliding Window
+#Time Complexity O(n) Space Complexity O(1)
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        iLeft = 0
+        iRight = 0
+        maxLength = 0
+        while(iRight < len(s)):
+            substring = s[iLeft: iRight]
+            if s[iRight] in substring:
+                iLeft += substring.index(s[iRight]) + 1
+            else:
+                maxLength = max(maxLength, len(substring) + 1)
+            iRight += 1
+        return maxLength
+
+
+"""
+#Approach: Sliding Window
 #Time Complexity O(n^2) Space Complexity O(n^2)
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
@@ -12,7 +30,7 @@ class Solution:
                         return maxWindow
                     D[substring] = 0
             maxWindow -= 1
-
+"""
 
 
 """
