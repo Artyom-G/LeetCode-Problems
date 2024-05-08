@@ -1,4 +1,4 @@
-#Time Complexity: O(n)
+#Time Complexity: O(nlogn)
 #Space Complexity: O(n)
 #Approach: value-index vector pair
 class Solution:
