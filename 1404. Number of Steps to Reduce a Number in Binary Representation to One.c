@@ -33,3 +33,9 @@ int numSteps(char* s) {
     }
     return counter;
 }
+
+
+//Alternative faster solution:
+//The output is always a + b where
+//a is the difference between the next power of 2 and the input number
+//b is the exponent on the power of 2
