@@ -35,7 +35,7 @@ class Solution:
         return output
 
 
-#Time Complexity: O(n^2*logn)
+#Time Complexity: O(n^2)
 #Space Complexity: O(n) but could even be O(1) if different sort is used
 #Approach: 2 Pointer, Two-Sum
 class Solution:
