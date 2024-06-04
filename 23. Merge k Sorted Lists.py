@@ -1,4 +1,42 @@
 #Time Complexity: O(n*k)
+#Space Complexity: O(log(k))
+#Approach: Merge Sort, Divide and Conquer
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        def mergeSort(l1, l2):
+            temp = ListNode(0)
+            curr = temp
+            while l1 and l2:
+                if l1.val < l2.val:
+                    curr.next = l1
+                    l1 = l1.next
+                else:
+                    curr.next = l2
+                    l2 = l2.next
+                curr = curr.next
+            curr.next = l1 if l1 is not None else l2
+            return temp.next
+        
+        if len(lists) == 0:
+            return None
+        if len(lists) == 1:
+            return lists[0]
+            
+        mid = len(lists) // 2
+
+        left = self.mergeKLists(lists[:mid])
+        right = self.mergeKLists(lists[mid:])
+
+        return mergeSort(left,right)
+        
+
+#Time Complexity: O(n*k)
 #Space Complexity: O(1)
 
 # Definition for singly-linked list.
