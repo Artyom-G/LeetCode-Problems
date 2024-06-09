@@ -1,3 +1,6 @@
+#Time Complexity: O(n)
+#Space Complexity: O(n)
+#Approach: Prefix Sum, Hash Table
 class Solution(object):
     def checkSubarraySum(self, nums, k):
         remainder_index_map = {0: -1}
