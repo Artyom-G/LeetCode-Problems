@@ -21,3 +21,15 @@ public:
         return true;
     }
 };
+
+//Time Complexity: O(nlogn)
+//Space Complexity: O(1) Auxiliry 
+//Approach: Sorting
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        sort(s.begin(), s.end());
+        sort(t.begin(), t.end());
+        return s == t;
+    }
+};
