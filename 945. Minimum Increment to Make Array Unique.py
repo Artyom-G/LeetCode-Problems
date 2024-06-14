@@ -1,20 +1,12 @@
+#Time Complexity: O(nlogn)
+#Space Complexity: O(n) because of timsort
+#Approach: Sort
 class Solution:
     def minIncrementForUnique(self, nums: List[int]) -> int:
-        used = set()
-        counter = 0
-        i=0
-        while i < len(nums):
-            if nums[i] not in used:
-                used.add(nums[i])
-                nums.pop(i)
-            else:
-                i+=1
-        
-        while len(nums) > 0:
-            while nums[-1] in used:
-                nums[-1] += 1
-                counter += 1
-            used.add(nums[-1])
-            nums.pop(-1)
-
-        return counter
+        nums.sort()
+        ans = 0
+        for i in range(1, len(nums)):
+            if nums[i] <= nums[i - 1]:
+                ans += nums[i - 1] - nums[i] + 1
+                nums[i] = nums[i - 1] + 1
+        return ans
