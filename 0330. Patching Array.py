@@ -1,3 +1,25 @@
+#Time Complexity: O(n)
+#Space Complexity: O(1)
+#Approach: Greedy, Math
+class Solution:
+    def minPatches(self, nums: List[int], n: int) -> int:
+        #Start with miss 1, miss is the first number we cannot make
+        #Iterate while you cant make n
+        #Check if miss can be made by adding one of nums to previous miss
+        #Otherwise add miss itself and then the next miss is double that 
+        miss = 1
+        i = 0
+        res = 0
+        while miss <= n:
+            if i >= len(nums) or nums[i] > miss:
+                miss += miss
+                res += 1
+            else:
+                miss += nums[i]
+                i+=1
+        return res
+
+
 #Time Complexity: O(n^2)
 #Space Complexity: O(n)
 #Approach: Greedy, Recursion, Sets, Math
