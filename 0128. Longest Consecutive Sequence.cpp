@@ -1,3 +1,33 @@
+//Time Complexity: O(n^2) but O(n) on average
+//Space Complexity: O(n)
+//Approach: Hashmaps, Sets
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        unordered_map<int, int> map;
+        unordered_set<int> set;
+        for(int num : nums){
+            set.insert(num);
+        }
+        int res = 0;
+        int x;
+        int y;
+        int seq;
+        for(int num : set){
+            x = map[num-1];
+            y = map[num+1];
+            seq = x + y + 1;
+            map[num-x] = seq;
+            map[num+y] = seq;
+            if(res < seq){
+                res = seq;
+            }
+        }
+        return res;
+    }
+};
+
+
 //Time Complexity: O(n^3) but O(n) on average
 //Space Complexity: O(n)
 //Approach: Hashmaps
