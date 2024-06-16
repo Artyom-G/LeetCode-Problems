@@ -1,4 +1,32 @@
 //Time Complexity: O(n)
+//Space Complexity: O(1)
+//Approach: Two-Pointer
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int l = 0;
+        int r = size(height) - 1;
+        int l_max = height[l];
+        int r_max = height[r];
+        int sum = 0;
+        while(l < r){
+            if(height[l] <= height[r]){
+                sum += l_max - height[l];
+                l++;
+                l_max = max(l_max, height[l]);
+            }
+            else{
+                sum += r_max - height[r];
+                r--;
+                r_max = max(r_max, height[r]);
+            }
+        }
+        return sum;      
+    }
+};
+
+
+//Time Complexity: O(n)
 //Space Complexity: O(n)
 //Approach: Prefix Max, Suffix Max
 class Solution {
