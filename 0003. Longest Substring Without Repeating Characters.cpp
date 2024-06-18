@@ -1,3 +1,30 @@
+//Time Complexity: O(n)
+//Space Complexity: O(n)
+//Approach: Sliding Window, Hash
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int l = 0;
+        int r = 0;
+        int n = s.size();
+        int res = 0;
+
+        unordered_set<char> used;
+        while (r < n) {
+            if (!used.count(s[r])) {
+                res = max(res, r - l + 1);
+                used.insert(s[r]);
+                r++;
+            } else {
+                used.erase(s[l]);
+                l++;
+            }
+        }
+        return res;
+    }
+};
+
+
 //Time Complexity: O(n^2)
 //Space Complexity: O(n)
 //Approach: Sliding Window, Hash
