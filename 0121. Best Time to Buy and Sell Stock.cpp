@@ -1,4 +1,25 @@
 //Time Complexity: O(n)
+//Space Complexity: O(1)
+//Approach: Sliding Window
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        int res = 0;
+        int l = 0;
+        for(int r = 0; r < n; r++){
+            if(prices[r] > prices[l]){
+                res = max(res, prices[r]-prices[l]);
+            }
+            else{
+                l = r;
+            }
+        }
+        return res;
+    }
+};
+
+//Time Complexity: O(n)
 //Space Complexity: O(n)
 //Approach: Prefix Min and Suffix Max
 class Solution {
