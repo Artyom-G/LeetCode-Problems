@@ -1,3 +1,33 @@
+#Time Complexity: O(n)
+#Space Complexity: O(n)
+#Approach: Sliding Window, Double-Ended Queues
+class Solution():
+    def longestSubarray(self, nums, limit):
+        maxs = deque()
+        mins = deque()
+        max_length = 0
+        left = 0
+
+        for right in range(len(nums)):
+            while maxs and nums[right] < maxs[-1]:
+                maxs.pop()
+            maxs.append(nums[right])
+            
+            while mins and nums[right] > mins[-1]:
+                mins.pop()
+            mins.append(nums[right])
+            
+            while mins[0] - maxs[0] > limit:
+                if nums[left] == maxs[0]:
+                    maxs.popleft()
+                if nums[left] == mins[0]:
+                    mins.popleft()
+                left += 1
+                
+            max_length = max(max_length, right - left + 1)
+        
+        return max_length
+
 #Time Complexity: O(n^2)
 #Space Complexity: O(1)
 #Approach: Sliding Window
