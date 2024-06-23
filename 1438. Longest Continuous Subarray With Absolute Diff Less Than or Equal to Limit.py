@@ -1,3 +1,37 @@
+#Time Complexity: O(n^2)
+#Space Complexity: O(1)
+#Approach: Sliding Window
+#Time Limit Exceeded
+class Solution:
+    def longestSubarray(self, nums: List[int], limit: int) -> int:
+        if len(nums) <= 1:
+            return len(nums)
+        left = 0
+        right = left + 1
+        res = 1
+        M = max(nums[0], nums[1])
+        m = min(nums[0], nums[1])
+        while(left < len(nums)):
+            #print(left, right)
+            if(right >= len(nums)):
+                res = max(res, right - left)
+                break
+            else:
+                M = max(M, nums[right])
+                m = min(m, nums[right])
+
+            if(M - m > limit):
+                res = max(res, right - left)
+                left = left + 1
+                right = left + 1
+                if(right < len(nums)):
+                    M = max(nums[left], nums[right])
+                    m = min(nums[left], nums[right])
+            else:
+                right += 1
+
+        return res 
+
 #Time Complexity: O(n)
 #Space Complexity: O(1)
 #Approach: Sliding Window
