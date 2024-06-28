@@ -1,0 +1,20 @@
+#Time Complexity: O(nlogn)
+#Space Complexity: O(n)
+#Approach: Greedy, Hashmap, Sort, Graph Theory
+class Solution:
+    def maximumImportance(self, n: int, roads: List[List[int]]) -> int:
+        degrees = [[k, 0] for k in range(n)]
+        for road in roads:
+            degrees[road[0]][1] += 1
+            degrees[road[1]][1] += 1
+
+        degrees.sort(key=lambda x: x[1])
+
+        index_map = {}
+        for i in range(len(degrees)):
+            index_map[degrees[i][0]] = i + 1
+
+        res = 0
+        for road in roads:
+            res+= index_map[road[0]] + index_map[road[1]]
+        return res
