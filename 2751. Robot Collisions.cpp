@@ -1,6 +1,6 @@
 //Time Complexity: O(n^2)
 //Space Complexity: O(n)
-//Approach: Math, Stack
+//Approach: Sort, Math, Stack
 class Solution {
 public:
     vector<int> survivedRobotsHealths(vector<int>& positions, vector<int>& healths, string directions) {
