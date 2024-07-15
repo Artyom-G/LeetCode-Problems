@@ -1,7 +1,6 @@
 //Time Complexity: O(n + m)
-//Space Complexity: O(n + m)
+//Space Complexity: O(1)
 //Approach: Freq Map, Sliding Window
-//Test Case 266/268: Memory Limit Exceeded
 class Solution {
 public:
     string minWindow(string s, string t) {
@@ -10,25 +9,25 @@ public:
 
         int L = 0;
         int R = 0;
-        map<char, int> freq;
+        int freq[128] = {0};
         int unique = 0;
         for(char i : t){
             if(!freq[i]) unique++;
             freq[i] += 1;
         }
-        map<char, int> count;
+        int count[128] = {0};
         int satisfied = 0;
         int smallest = s.size();
         string res = "";
+        int minStart = -1;
         if(freq[s[R]]){
             count[s[R]] += 1;
             if(freq[s[R]] == count[s[R]]) satisfied +=1; 
         }
         while(R < s.size()){
-            //cout << L << " " << R << " " << satisfied << " " << unique << "\n";
             if(satisfied == unique){
                 smallest = R - L + 1;
-                res = s.substr(L, smallest);
+                minStart = L;
             }
 
             if(R - L + 1 >= smallest){
@@ -59,6 +58,7 @@ public:
             }
             
         }
-        return res;
+        if(minStart == -1) return "";
+        return s.substr(minStart, smallest);
     }
 };
