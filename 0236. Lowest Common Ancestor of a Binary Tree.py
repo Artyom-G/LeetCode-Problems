@@ -18,14 +18,21 @@ class Solution:
             if root:
                 if root.val == p.val:
                     self.p_found = True
-                    if self.q_found: self.ancestor = ancestor
+                    if self.q_found: 
+                        self.ancestor = ancestor
+                        return
                 if root.val == q.val:
                     self.q_found = True
-                    if self.p_found: self.ancestor = ancestor
+                    if self.p_found: 
+                        self.ancestor = ancestor
+                        return
+
                 if not (self.p_found or self.q_found): recursion(root.left, root.left)
                 else: recursion(root.left, ancestor)
+
                 if not (self.p_found or self.q_found): recursion(root.right, root.right)
                 else: recursion(root.right, ancestor)
+        
         recursion()
         return self.ancestor
 
