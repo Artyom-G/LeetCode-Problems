@@ -1,4 +1,4 @@
-#Time Complexity: O(n)
+#Time Complexity: O(n) but O(logn) on Average
 #Space Complexity: O(logn)
 #Approach: DFS, Recursion, Tree
 
@@ -31,7 +31,7 @@ class Solution:
 
 
 #Time Complexity: O(n)
-#Space Complexity: O(n)
+#Space Complexity: O(n) but O(logn) on Average
 #Approach: DFS, Recursion, Tree, Intersection, Array
 
 # Definition for a binary tree node.
