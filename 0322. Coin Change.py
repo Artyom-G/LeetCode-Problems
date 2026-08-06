@@ -1,11 +1,32 @@
 # Time Complexity: O(nk)
+# Space Complexity: O(k)
+# Approach: DP
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        # dp[k] at step i is the min coins[0..i] required to get a value k
+        # dp[k] at step i = min{dp[k] at step i-1, dp[k-coins_i]+1}
+        m = min(coins)
+        n = len(coins)
+        dp = [float("inf") for k in range(amount+1)]
+        dp[0] = 0
+        for k in range(1, amount+1):
+            if k < m:
+                continue
+            for i in range(n):
+                if k-coins[i] >= 0: 
+                    dp[k] = min(dp[k], dp[k-coins[i]] + 1)
+        if dp[amount] == float("inf"): return -1
+        return dp[amount]
+        
+
+# Time Complexity: O(nk)
 # Space Complexity: O(nk)
 # Approach: 2D DP
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         if amount == 0: return 0
         # dp[k][i] is the min coins[0..i] required to get a value k
-        # dp[k][i] = min{dp[k][i-1], dp[k-a_i][i-1]+1}
+        # dp[k][i] = min{dp[k][i-1], dp[k-coins_i][n-1]+1}
         m = min(coins)
         n = len(coins)
         dp = [[float("inf") for i in range(n)] for k in range(amount+1)]
