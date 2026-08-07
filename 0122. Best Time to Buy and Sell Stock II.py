@@ -1,3 +1,23 @@
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# Approach: DP
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+
+        if n < 2: return 0
+
+        dp = [0] * n
+        best = -prices[0]
+
+        for i in range(1, n):
+            dp[i] = max(dp[i-1], best + prices[i])
+            best = max(best, dp[i] - prices[i])
+
+        return dp[-1]
+
+
+
 # Time Complexity: O(n^2)
 # Space Complexity: O(n^2)
 # Approach: DP
