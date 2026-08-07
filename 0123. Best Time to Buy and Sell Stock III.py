@@ -1,4 +1,32 @@
-# Time Complexity: O(n^2)
+# Time Complexity: O(n)
+# Space Complxity: O(n)
+# Approach: DP
+class Solution:
+    def maxProfit(self, prices: list[int]) -> int:
+        n = len(prices)
+        if n == 0:
+            return 0
+            
+        left_profits = [0] * n
+        right_profits = [0] * n
+        
+        min_so_far = prices[0]
+        for i in range(1, n):
+            min_so_far = min(min_so_far, prices[i])
+            left_profits[i] = max(left_profits[i-1], prices[i] - min_so_far)
+            
+        max_so_far = prices[-1]
+        for i in range(n-2, -1, -1):
+            max_so_far = max(max_so_far, prices[i])
+            right_profits[i] = max(right_profits[i+1], max_so_far - prices[i])
+            
+        max_total = 0
+        for i in range(n):
+            max_total = max(max_total, left_profits[i] + right_profits[i])
+            
+        return max_total
+
+# Time Complexity: O(n^2) (Time Limit Exceeded)
 # Space Complxity: O(n)
 # Approach: DP, Greedy
 class Solution:
